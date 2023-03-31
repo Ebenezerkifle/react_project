@@ -3,11 +3,13 @@ import { getMovies } from "../services/fakeMovieService";
 import "../bootstrap.css";
 import Like from "./comman/like";
 import Pagination from "./comman/pagination";
+import { paginate } from "../utiles/paginate";
 
 class Movies extends Component {
   state = {
     movieList: getMovies(),
     pageSize: 4,
+    selectedPage: 1,
   };
 
   arrayRemove(list, item) {
@@ -29,15 +31,21 @@ class Movies extends Component {
     });
   };
 
-  handleSelect = () => {};
+  handleSelect = (page) => {
+    this.setState({ selectedPage: page });
+  };
 
   generateMovieList() {
-    return this.state.movieList.map((movie) => (
+    return paginate(
+      this.state.pageSize,
+      this.state.selectedPage,
+      this.state.movieList
+    ).map((movie) => (
       <tr key={movie._id}>
-        <td>{movie["title"]}</td>
+        <td>{movie.title}</td>
         <td>{movie.genre.name}</td>
-        <td>{movie["numberInStock"]}</td>
-        <td>{movie["dailyRentalRate"]}</td>
+        <td>{movie.numberInStock}</td>
+        <td>{movie.dailyRentalRate}</td>
         <td>
           <Like liked={movie.liked} onClick={() => this.handleLike(movie)} />
         </td>
@@ -76,7 +84,8 @@ class Movies extends Component {
         <Pagination
           itemCount={this.state.movieList.length}
           pageSize={this.state.pageSize}
-          onSelected={() => this.handleSelect()}
+          onSelected={this.handleSelect}
+          selected={this.state.selectedPage}
         />
       </React.Fragment>
     );

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Pagination = (props) => {
-  const { itemCount, pageSize, onSelected } = props;
+  const { itemCount, pageSize, onSelected, selected } = props;
   const pages = Math.ceil(itemCount / pageSize);
 
   if (pages < 2) return null;
@@ -10,17 +10,20 @@ const Pagination = (props) => {
     pageList.push(i);
   }
 
-  let classes = "page-link";
+  let classes;
   // active
   // if(pageSize)
 
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
-        {pageList.map((item) => (
-          <li key={item} className="page-item">
-            <a onClick={onSelected} className={classes}>
-              {item}
+        {pageList.map((page) => (
+          <li key={page} className="page-item">
+            <a
+              onClick={() => onSelected(page)}
+              className={page === selected ? "page-link active" : "page-link"}
+            >
+              {page}
             </a>
           </li>
         ))}
