@@ -1,0 +1,55 @@
+import React, { Component } from "react";
+import { paginate } from "../utiles/paginate";
+import Like from "./comman/like";
+
+class MovieTable extends Component {
+  raiseSort = (path) => {
+    let sortColumn = { ...this.props.sortColumn };
+    if (sortColumn.path === path) {
+      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    } else {
+      sortColumn = { path, order: "asc" };
+    }
+
+    this.props.onSort(sortColumn);
+  };
+  render() {
+    const { movies, selectedPage, pageSize, onLike, onDelete } = this.props;
+    return (
+      <table className="table">
+        <thead>
+          <tr>
+            <th onClick={() => this.raiseSort("title")}>Title</th>
+            <th onClick={() => this.raiseSort("genre.name")}>Genre</th>
+            <th onClick={() => this.raiseSort("numberInStock")}>Stock</th>
+            <th onClick={() => this.raiseSort("dailyRentalRate")}>Rate</th>
+            <th />
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {paginate(pageSize, selectedPage, movies).map((movie) => (
+            <tr key={movie._id}>
+              <td>{movie.title}</td>
+              <td>{movie.genre.name}</td>
+              <td>{movie.numberInStock}</td>
+              <td>{movie.dailyRentalRate}</td>
+              <td>
+                <Like liked={movie.liked} onClick={() => onLike(movie)} />
+              </td>
+              <td>
+                <button
+                  onClick={() => onDelete(movie["_id"])}
+                  className="btn btn-danger btn-sm"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+}
+export default MovieTable;
