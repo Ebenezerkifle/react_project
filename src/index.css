@@ -8,6 +8,10 @@ body {
   padding: 30 10 10 10;
 }
 
+.clickable{
+  cursor: pointer;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
