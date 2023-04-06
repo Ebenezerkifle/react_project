@@ -5,7 +5,7 @@ import Pagination from "./comman/pagination";
 import ListGroup from "./comman/list_group";
 import { getGenres } from "../services/fakeGenreService";
 import MovieTable from "./movieTable";
-import _, { set } from "lodash";
+import _ from "lodash";
 
 class Movies extends Component {
   state = {
@@ -76,7 +76,7 @@ class Movies extends Component {
     );
 
     return (
-      <React.Fragment>
+      <main className="container">
         <div className="row">
           <div className="col-3">
             <ListGroup
@@ -106,7 +106,7 @@ class Movies extends Component {
             />
           </div>
         </div>
-      </React.Fragment>
+      </main>
     );
   }
 }

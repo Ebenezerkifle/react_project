@@ -10,10 +10,6 @@ const Pagination = (props) => {
     pageList.push(i);
   }
 
-  let classes;
-  // active
-  // if(pageSize)
-
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination">
