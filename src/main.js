@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import NavigationBar from './components/comman/navigationBar';
 import { Route, Routes, Navigate} from 'react-router-dom';
 import Movies from './components/movies';
+import NavigationBar from './components/comman/navigationBar';
 import Customers from './components/comman/customers';
 import NotFound from './components/comman/notFound';
 import Rental from './components/comman/rental';
-import "./App.css";
 import MovieDetails from './components/movieDetail';
+import LoginForm from './components/loginForm';
+import "./App.css";
 
 class Main extends Component {
     render() { 
@@ -14,6 +15,7 @@ class Main extends Component {
            <main>
            <NavigationBar/>  
               <Routes>
+                <Route path='/login' element={<LoginForm />}/>
                 <Route path='/'element={<Navigate to="/movies"/>}/>
                 <Route path='/movies/:id' element={<MovieDetails />}/>
                 <Route path='/movies' element={<Movies/>}/> 

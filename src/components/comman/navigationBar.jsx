@@ -9,15 +9,6 @@ const NavigationBar = () => {
         <Link className="navbar-brand" to="/movies">
           Vidly
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle Navigation"
-        />
         <NavLink
           style={({ isActive }) => {
             return {
@@ -50,6 +41,17 @@ const NavigationBar = () => {
           to="/rental"
         >
           Rental
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "blue" : "inherit",
+            };
+          }}
+          className="nav-item nav-link"
+          to="/login"
+        >
+          Login
         </NavLink>
       </div>
     </nav>
