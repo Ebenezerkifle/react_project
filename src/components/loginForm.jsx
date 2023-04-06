@@ -1,73 +1,55 @@
 import React, { Component } from "react";
+import Joi from "joi-browser";
 import Input from "./comman/input";
+import Form from "./comman/form";
 
-class LoginForm extends Component {
+class LoginForm extends Form {
   //   username = React.createRef();
   //   password = React.createRef();
   //   componentDidMount() {
   //     //this.username.current.focus();
   //   }
   state = {
-    account: {
+    data: {
       username: "",
       password: "",
     },
+    errors: {},
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // const uname = this.username.current.value;
-    // const passcode = this.password.current.value;
-    console.log(this.state.account.username, this.state.account.password);
+  schema = {
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password"),
   };
-  handleChange = ({ currentTarget: input }) => {
-    const account = { ...this.state.account };
-    account[input.name] = input.value;
-    this.setState({ account });
+
+  doSubmit = () => {
+    //call the server
+    console.log("submitted");
   };
+
   render() {
+    const { errors, data } = this.state;
     return (
       <div className="container">
         <h1>Login Form</h1>
         <form onSubmit={this.handleSubmit}>
-          {/* <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              autoFocus
-              value={this.state.account.username}
-              onChange={this.handleChange}
-              name="username"
-              //ref={this.username}
-              id="username"
-              type="text"
-              className="form-control"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              //ref={this.password}
-              value={this.state.account.password}
-              onChange={this.handleChange}
-              name="password"
-              id="password"
-              type="text"
-              className="form-control"
-            />
-          </div> */}
           <Input
-            value={this.state.account.username}
+            value={data.username}
             onchange={this.handleChange}
             name="username"
             label="Username"
+            error={errors.username}
           />
           <Input
-            value={this.state.account.password}
+            value={data.password}
             onchange={this.handleChange}
             name="password"
             label="Password"
+            error={errors.password}
           />
-          <button className="btn btn-primary">Submit</button>
+          <button disabled={this.validate()} className="btn btn-primary">
+            Login
+          </button>
         </form>
       </div>
     );
