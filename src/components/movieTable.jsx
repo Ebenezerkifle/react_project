@@ -31,7 +31,9 @@ class MovieTable extends Component {
         path: "title",
         label: "Title",
         content: (movie) => (
-          <Link to={`/movies/${movie._id}`}>{movie.title}</Link>
+          <Link to={`/movies/${movie._id}`} state={{ data: movie }}>
+            {movie.title}
+          </Link>
         ),
       },
       { path: "genre.name", label: "Genre" },

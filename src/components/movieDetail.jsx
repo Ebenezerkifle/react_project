@@ -1,16 +1,17 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import MovieForm from "./movieForm";
 
 const MovieDetails = () => {
-  const param = useParams();
-  let navigate = useNavigate();
+  let location = useLocation();
   return (
-    <main className="container">
-      <h3>Movie Detail {param.id} </h3>
-      <button onClick={() => navigate("/")} className="btn btn-primary btn-sm">
-        Save
-      </button>
-    </main>
+    <MovieForm data={location.state.data} />
+    // <main className="container">
+    //   <h3>Movie Detail {param.id} </h3>
+    //   <button onClick={() => navigate("/")} className="btn btn-primary btn-sm">
+    //     Save
+    //   </button>
+    // </main>
   );
 };
 

@@ -9,6 +9,7 @@ import MovieDetails from './components/movieDetail';
 import LoginForm from './components/loginForm';
 import "./App.css";
 import RegisterForm from './components/registerForm';
+import MovieForm from './components/movieForm';
 
 class Main extends Component {
     render() { 
@@ -16,10 +17,11 @@ class Main extends Component {
            <main>
            <NavigationBar/>  
               <Routes>
+                <Route path='/movies/new' element={<MovieForm />}/>
                 <Route path='/register' element={<RegisterForm />}/>
                 <Route path='/login' element={<LoginForm />}/>
                 <Route path='/'element={<Navigate to="/movies"/>}/>
-                <Route path='/movies/:id' element={<MovieDetails />}/>
+                <Route path='/movies/:id' element={<MovieDetails/>}/>
                 <Route path='/movies' element={<Movies/>}/> 
                 <Route path='/customers' element={<Customers title='Customers Props'/>}/>
                 <Route path='/rental' element={<Rental/>}/>

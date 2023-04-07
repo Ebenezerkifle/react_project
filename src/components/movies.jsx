@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
-import "../bootstrap.css";
 import Pagination from "./comman/pagination";
 import ListGroup from "./comman/list_group";
 import { getGenres } from "../services/fakeGenreService";
 import MovieTable from "./movieTable";
+import { Link } from "react-router-dom";
 import _ from "lodash";
+import "../bootstrap.css";
 
 class Movies extends Component {
   state = {
@@ -57,6 +58,9 @@ class Movies extends Component {
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
+  handleAdd = (props) => {
+    console.log(props);
+  };
 
   render() {
     const { length: count } = this.state.movieList;
@@ -88,6 +92,9 @@ class Movies extends Component {
             />
           </div>
           <div className="col">
+            <Link to="/movies/new">
+              <button className="btn btn-primary sm">New Movie</button>
+            </Link>
             <p>Showing {sorted.length} movies in the database.</p>
             <MovieTable
               movies={sorted}
