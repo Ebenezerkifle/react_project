@@ -53,6 +53,17 @@ const NavigationBar = () => {
         >
           Login
         </NavLink>
+        <NavLink
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "blue" : "inherit",
+            };
+          }}
+          className="nav-item nav-link"
+          to="/register"
+        >
+          Register
+        </NavLink>
       </div>
     </nav>
   );

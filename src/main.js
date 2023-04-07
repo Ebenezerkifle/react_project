@@ -8,6 +8,7 @@ import Rental from './components/comman/rental';
 import MovieDetails from './components/movieDetail';
 import LoginForm from './components/loginForm';
 import "./App.css";
+import RegisterForm from './components/registerForm';
 
 class Main extends Component {
     render() { 
@@ -15,6 +16,7 @@ class Main extends Component {
            <main>
            <NavigationBar/>  
               <Routes>
+                <Route path='/register' element={<RegisterForm />}/>
                 <Route path='/login' element={<LoginForm />}/>
                 <Route path='/'element={<Navigate to="/movies"/>}/>
                 <Route path='/movies/:id' element={<MovieDetails />}/>

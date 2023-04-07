@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import Like from "./like";
-import { Link } from "react-router-dom";
 
 // movie: array
 // onlike: function
