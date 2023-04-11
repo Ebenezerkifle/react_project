@@ -17,7 +17,7 @@ class Main extends Component {
            <main>
            <NavigationBar/>  
               <Routes>
-                <Route path='/movies/new' element={<MovieForm />}/>
+                {/* <Route path='/movies/new' element={<MovieForm />}/> */}
                 <Route path='/register' element={<RegisterForm />}/>
                 <Route path='/login' element={<LoginForm />}/>
                 <Route path='/'element={<Navigate to="/movies"/>}/>

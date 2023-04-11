@@ -1,4 +1,5 @@
 const Dropdown = ({ error, label, name, options, value, ...rest }) => {
+  //console.log("value: ", value["name"]);
   return (
     <div className="form-group">
       <label>{label}</label>
@@ -7,11 +8,11 @@ const Dropdown = ({ error, label, name, options, value, ...rest }) => {
         name={name}
         className="custom-select"
         id="inputGroupSelect04"
-        defaultValue=""
       >
+        <option value="" />
         {options.map((option) => (
-          <option value={option["name"]} key={option["_id"]}>
-            {option["name"]}
+          <option value={option._id ?? ""} key={option._id}>
+            {option.name}
           </option>
         ))}
       </select>

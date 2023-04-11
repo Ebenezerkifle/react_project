@@ -7,6 +7,7 @@ import MovieTable from "./movieTable";
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import "../bootstrap.css";
+import SearchForm from "./comman/searchForm";
 
 class Movies extends Component {
   state = {
@@ -58,9 +59,6 @@ class Movies extends Component {
   handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
-  handleAdd = (props) => {
-    console.log(props);
-  };
 
   render() {
     const { length: count } = this.state.movieList;
@@ -82,7 +80,7 @@ class Movies extends Component {
     return (
       <main className="container">
         <div className="row">
-          <div className="col-3">
+          <div className="col-3" style={{ marginTop: 20 }}>
             <ListGroup
               genres={this.state.genres}
               textProperty="name"
@@ -92,10 +90,17 @@ class Movies extends Component {
             />
           </div>
           <div className="col">
-            <Link to="/movies/new">
-              <button className="btn btn-primary sm">New Movie</button>
+            <Link
+              to="/movies/new"
+              className={"btn btn-primary"}
+              style={{ marginBottom: 10, marginTop: 20 }}
+            >
+              New Movie
             </Link>
-            <p>Showing {sorted.length} movies in the database.</p>
+            <h5 style={{ marginTop: 5 }}>
+              Showing {sorted.length} movies in the database.
+            </h5>
+            <SearchForm />
             <MovieTable
               movies={sorted}
               pageSize={this.state.pageSize}
